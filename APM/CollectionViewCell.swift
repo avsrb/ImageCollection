@@ -23,9 +23,9 @@ class CollectionViewCell: UICollectionViewCell {
         
         let images = [
             UIImage(named: "error"),
-            UIImage(named: "error"),
-            UIImage(named: "error"),
-            UIImage(named: "error")
+            UIImage(named: "Rr"),
+            UIImage(named: "r66"),
+            UIImage(named: "airbus")
 //            UIImage(systemName: "square.and.arrow.down"),
 //            UIImage(systemName: "home")
         ].compactMap({ $0 })
@@ -43,6 +43,8 @@ class CollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+//        imageView.image = nil
     }
+    
+    
 }
