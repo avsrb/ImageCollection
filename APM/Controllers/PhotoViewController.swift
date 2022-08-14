@@ -41,6 +41,18 @@ class PhotoViewController: UIViewController {
         scrollView.delegate = self
         
         scrollView.frame = view.bounds
+    
+        NSLayoutConstraint.activate(
+            [
+                scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                imageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+            ])
         scrollView.layoutSubviews()
     }
     
