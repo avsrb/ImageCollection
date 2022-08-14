@@ -9,11 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-//    private lazy var collectionView : UICollectionView = {
-//        let collectionView = UICollectionView()
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        return collectionView
-//    }()
+    static let imagesURL: [String] = [
+            "https://media.istockphoto.com/photos/hot-air-balloons-flying-over-the-botan-canyon-in-turkey-picture-id1297349747?b=1&k=20&m=1297349747&s=170667a&w=0&h=oH31fJty_4xWl_JQ4OIQWZKP8C6ji9Mz7L4XmEnbqRU=",
+            "https://i.pinimg.com/736x/f9/96/8d/f9968df268c7dab39bef20cff0a058cf.jpg",
+            "https://img.freepik.com/free-photo/breathtaking-shot-beautiful-stones-turquoise-water-lake-hills-background_181624-12847.jpg?w=2000",
+            "https://wallpaperaccess.com/full/1131217.jpg"
+            ]
     
     private lazy var collectionView = UICollectionView(
         frame: .zero,
@@ -25,15 +26,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Image"
-//        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
         
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .systemBackground
         
         view.addSubview(collectionView)
-        
-//        collectionView.backgroundColor = .systemBackground
     }
     
     override func viewDidLayoutSubviews() {
@@ -45,18 +45,20 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return ViewController.imagesURL.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
+        cell.delegate = self
+        cell.imageURL = URL(string: ViewController.imagesURL[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(
-            width: (view.frame.size.width/3)-3,
-            height: (view.frame.size.width/3)-3
+            width: (view.frame.size.width/2)-3,
+            height: (view.frame.size.width/2)-3
         )
     }
     
@@ -76,7 +78,4 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         collectionView.deselectItem(at: indexPath, animated: true)
         print("Selected section \(indexPath.section) and row \(indexPath.row)")
     }
-    
-    
-    
 }

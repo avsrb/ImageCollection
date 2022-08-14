@@ -9,27 +9,24 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     static let identifier = "CollectionViewCell"
+    weak var delegate: ViewController?
     
-    private var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()
     
+    var imageURL: URL? {
+        didSet {
+            updateUI()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
-        
-        let images = [
-            UIImage(named: "error"),
-            UIImage(named: "Rr"),
-            UIImage(named: "r66"),
-            UIImage(named: "airbus")
-//            UIImage(systemName: "square.and.arrow.down"),
-//            UIImage(systemName: "home")
-        ].compactMap({ $0 })
-        imageView.image = images.randomElement()
     }
     
     required init?(coder: NSCoder) {
@@ -46,5 +43,18 @@ class CollectionViewCell: UICollectionViewCell {
 //        imageView.image = nil
     }
     
-    
+    private func updateUI() {
+        if let url = imageURL {
+            DispatchQueue.global(qos: .utility).async {
+                let contentsOfURL = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    if url == self.imageURL {
+                        if let imageData = contentsOfURL {
+                            self.imageView.image = UIImage(data: imageData)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
