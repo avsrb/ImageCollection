@@ -15,7 +15,16 @@ class CollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.image = nil
         return imageView
+    }()
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView(style: .medium)
+        ai.translatesAutoresizingMaskIntoConstraints = false
+        ai.color = .black
+        ai.hidesWhenStopped = true
+        return ai
     }()
     
     var imageURL: URL? {
@@ -26,7 +35,11 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
+        
+        self.backgroundView = imageView
+        self.addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -40,19 +53,22 @@ class CollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        imageView.image = nil
+        imageView.image = nil
     }
     
     //Задача разработчика состоит только в выборе очереди и добавлении задания (как правило, замыкания) в эту очередь синхронно с помощью функции sync или асинхронно с помощью функции async, дальше работает исключительно iOS.
 
     private func updateUI() {
         guard let imageURL = imageURL else { return }
+        activityIndicator.startAnimating()
+//        self.showSpinner()
         
-        let queue = DispatchQueue.global(qos: .utility)
-        queue.async {
+        DispatchQueue.global(qos: .utility).async {
             if let data = try? Data(contentsOf: imageURL) {
                 DispatchQueue.main.async {
                     self.imageView.image = UIImage(data: data)
+                    self.activityIndicator.stopAnimating()
+                    //self.removeFromSuperview()
                 }
             }
         }

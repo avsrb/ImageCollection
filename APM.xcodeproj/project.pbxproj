@@ -12,6 +12,7 @@
 		AC37439B28A698A400581D3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC37439A28A698A400581D3B /* Assets.xcassets */; };
 		AC37439E28A698A400581D3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC37439C28A698A400581D3B /* LaunchScreen.storyboard */; };
 		AC5419FD28A795890055C0D0 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5419FC28A795890055C0D0 /* CollectionViewCell.swift */; };
+		AC71FA6F28A8EFF2007C0805 /* Extention+UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC71FA6E28A8EFF2007C0805 /* Extention+UICollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		AC37439D28A698A400581D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC37439F28A698A400581D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC5419FC28A795890055C0D0 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		AC71FA6E28A8EFF2007C0805 /* Extention+UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+UICollectionViewCell.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				AC3743A628A69CFB00581D3B /* Controllers */,
 				AC3743A728A69D1600581D3B /* Resources */,
 				AC5419FC28A795890055C0D0 /* CollectionViewCell.swift */,
+				AC71FA6E28A8EFF2007C0805 /* Extention+UICollectionViewCell.swift */,
 			);
 			path = APM;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			files = (
 				AC37439628A698A300581D3B /* ViewController.swift in Sources */,
 				AC37439228A698A300581D3B /* AppDelegate.swift in Sources */,
+				AC71FA6F28A8EFF2007C0805 /* Extention+UICollectionViewCell.swift in Sources */,
 				AC5419FD28A795890055C0D0 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
