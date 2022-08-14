@@ -13,7 +13,7 @@ class ViewController: UIViewController {
             "https://media.istockphoto.com/photos/hot-air-balloons-flying-over-the-botan-canyon-in-turkey-picture-id1297349747?b=1&k=20&m=1297349747&s=170667a&w=0&h=oH31fJty_4xWl_JQ4OIQWZKP8C6ji9Mz7L4XmEnbqRU=",
             "https://i.pinimg.com/736x/f9/96/8d/f9968df268c7dab39bef20cff0a058cf.jpg",
             "https://img.freepik.com/free-photo/breathtaking-shot-beautiful-stones-turquoise-water-lake-hills-background_181624-12847.jpg?w=2000",
-            "https://wallpaperaccess.com/full/1131217.jpg"
+            "https://wallpaperaccess.com/full/1131217.jpg",
             ]
     
     private lazy var collectionView = UICollectionView(
@@ -52,6 +52,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
         cell.delegate = self
         cell.imageURL = URL(string: ViewController.imagesURL[indexPath.row])
+//        cell.configurationUpdateHandler = { cell, state in
+//            var content = UIListContentConfiguration.cell().updated(for: state)
+//            content.text = "hello"
+//            if state.isDisabled {
+//                content.textProperties.color = .systemRed
+//            }
+//            cell.contentConfiguration = content
+//        }
         return cell
     }
     

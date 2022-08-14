@@ -43,18 +43,29 @@ class CollectionViewCell: UICollectionViewCell {
 //        imageView.image = nil
     }
     
+    //Задача разработчика состоит только в выборе очереди и добавлении задания (как правило, замыкания) в эту очередь синхронно с помощью функции sync или асинхронно с помощью функции async, дальше работает исключительно iOS.
+
     private func updateUI() {
-        if let url = imageURL {
-            DispatchQueue.global(qos: .utility).async {
-                let contentsOfURL = try? Data(contentsOf: url)
+        guard let imageURL = imageURL else { return }
+        
+        let queue = DispatchQueue.global(qos: .utility)
+        queue.async {
+            if let data = try? Data(contentsOf: imageURL) {
                 DispatchQueue.main.async {
-                    if url == self.imageURL {
-                        if let imageData = contentsOfURL {
-                            self.imageView.image = UIImage(data: imageData)
-                        }
-                    }
+                    self.imageView.image = UIImage(data: data)
                 }
             }
         }
     }
+    
+    //QOS_CLASS_UTILITY - используется для задач, в которых не требуется получить немедленный результат, например запрос в сеть. Наиболее сбалансированный QOS с точки зрения потребления ресурсов.
+    
+    // из лекции эплла подготовка изображений, чтобы они не тупили при скроле
+    //if let image = UIImage(data: pathToImage) {
+    //    Task {
+    //        let prepareImage = await image.byPreparingForDisplay()
+    
+    //        imageView.image = prepareImage
+    //    }
+    //}
 }
