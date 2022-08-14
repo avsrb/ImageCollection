@@ -13,7 +13,8 @@ class ViewController: UIViewController {
             "https://media.istockphoto.com/photos/hot-air-balloons-flying-over-the-botan-canyon-in-turkey-picture-id1297349747?b=1&k=20&m=1297349747&s=170667a&w=0&h=oH31fJty_4xWl_JQ4OIQWZKP8C6ji9Mz7L4XmEnbqRU=",
             "https://i.pinimg.com/736x/f9/96/8d/f9968df268c7dab39bef20cff0a058cf.jpg",
             "https://img.freepik.com/free-photo/breathtaking-shot-beautiful-stones-turquoise-water-lake-hills-background_181624-12847.jpg?w=2000",
-            "https://wallpaperaccess.com/full/1131217.jpg"
+            "https://wallpaperaccess.com/full/1131217.jpg",
+            "https://wallpaperaccess.com/full/1131217.jp"
             ]
     
     private lazy var collectionView = UICollectionView(
@@ -37,6 +38,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        print(#function)
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
@@ -58,8 +60,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(
-            width: (view.frame.size.width/2)-3,
-            height: (view.frame.size.width/2)-3
+            width: view.frame.size.width/2-3,
+            height: view.frame.size.width/2-3
         )
     }
     

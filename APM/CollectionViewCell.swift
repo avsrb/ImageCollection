@@ -13,7 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = nil
         return imageView
@@ -70,6 +70,13 @@ class CollectionViewCell: UICollectionViewCell {
                     self.activityIndicator.stopAnimating()
                     //self.removeFromSuperview()
                 }
+            } else {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: "Cannot acces to \(imageURL)", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.delegate?.present(alert, animated: false)
+                    self.activityIndicator.stopAnimating()
+                }
             }
         }
     }
@@ -84,4 +91,19 @@ class CollectionViewCell: UICollectionViewCell {
     //        imageView.image = prepareImage
     //    }
     //}
+}
+
+extension ViewController {
+    func showAlert(title: String, message: String, firstAction: String, secondAction: String?) {
+        // create the alert
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: firstAction, style: UIAlertAction.Style.default, handler: nil))
+        if let secondAction = secondAction {
+            alert.addAction(UIAlertAction(title: secondAction, style: UIAlertAction.Style.cancel, handler: nil))
+        }
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
 }
