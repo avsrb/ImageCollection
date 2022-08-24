@@ -10,6 +10,6 @@ Learned:
 - Alerts
 - ScrollView, Zoom
 
-<img src="demo.png" alt="demo.png" width="400"/>
+<img src="demo.gif" alt="demo.gif" width="400"/>
 
 
